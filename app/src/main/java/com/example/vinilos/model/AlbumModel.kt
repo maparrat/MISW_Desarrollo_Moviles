@@ -6,7 +6,7 @@ data class AlbumModel(
     val id: Int,
     val name: String,
     val cover: String, // URL of image
-    val releaseDate: Date,
+    val releaseDate: String,
     val description: String,
     val genre: String,
     val recordLabel: String

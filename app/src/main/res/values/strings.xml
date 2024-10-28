@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">vinilos</string>
+    <string name="album_text">Listado de Albunes</string>
+    <string name="vinilos_music">Vinilos Music</string>
+    <string name="soy_coleccionista">Soy coleccionista</string>
+    <string name="albunes">Albunes</string>
+    <string name="artistas">Artistas</string>
+    <string name="album_list">Album list</string>
 </resources>

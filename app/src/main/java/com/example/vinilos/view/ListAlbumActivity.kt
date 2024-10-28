@@ -12,16 +12,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos.R
 import com.example.vinilos.databinding.ActivityListAlbumBinding
+import com.example.vinilos.databinding.AlbumFragmentBinding
 import com.example.vinilos.model.AlbumModel
 import com.example.vinilos.view.adapters.AlbumsAdapter
-import com.example.vinilos.viewmodel.AlbumViewModel
+
+import com.example.vinilos.viewmodels.AlbumViewModel
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 @Suppress("DEPRECATION")
 class AlbumFragment : Fragment() {
-    private var _binding: ActivityListAlbumBinding? = null
+    private var _binding: AlbumFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: AlbumViewModel
@@ -31,14 +33,14 @@ class AlbumFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = ActivityListAlbumBinding.inflate(inflater, container, false)
+        _binding = AlbumFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModelAdapter = AlbumsAdapter()
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        //ecyclerView = binding.albumsRv
+        recyclerView = binding.albumsRv
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = viewModelAdapter
     }

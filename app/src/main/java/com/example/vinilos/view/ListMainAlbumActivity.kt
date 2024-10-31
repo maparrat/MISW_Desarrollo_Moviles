@@ -25,6 +25,7 @@
 
 package com.example.vinilos.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -36,6 +37,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.vinilos.R
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.vinilos.R.*
 
 
 class ListMainAlbumActivity : AppCompatActivity() {
@@ -43,28 +45,30 @@ class ListMainAlbumActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main_list)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        setContentView(layout.activity_main_list)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-
-
-
             // Get the navigation host fragment from this Activity
             val navHostFragment = supportFragmentManager
-                .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+                .findFragmentById(id.nav_host_fragment) as NavHostFragment
             // Instantiate the navController using the NavHostFragment
             navController = navHostFragment.navController
             // Make sure actions in the ActionBar get propagated to the NavController
             Log.d("act", navController.toString())
-            setSupportActionBar(findViewById(R.id.my_toolbar))
+            setSupportActionBar(findViewById(id.my_toolbar))
             setupActionBarWithNavController(navController)
 
 
+        val buttonView = findViewById<Button>(id.button_detail)
 
+        buttonView.setOnClickListener {
+            val intent = Intent(this, DetailMainAlbumActivity::class.java)
+            startActivity(intent)
+        }
 
         }
 

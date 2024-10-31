@@ -2,6 +2,7 @@ package com.example.vinilos.view.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -22,10 +23,13 @@ class AlbumsAdapter: RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
 
     class AlbumViewHolder(val viewDataBinding: ActivityListAlbumBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root) {
+        val context = viewDataBinding.root.context
+
         companion object {
             @LayoutRes
             val LAYOUT = R.layout.activity_list_album
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
@@ -41,6 +45,12 @@ class AlbumsAdapter: RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
         holder.viewDataBinding.also {
             it.album = albums[position]
         }
+
+        holder.viewDataBinding.root.setOnClickListener {
+            val album = holder.viewDataBinding.album // Acceder a los datos asociados a la vista
+
+            Toast.makeText(holder.context, "Has seleccionado: ${albums[position]} ", Toast.LENGTH_SHORT).show()
+        }
 //        holder.viewDataBinding.root.setOnClickListener {
 //            val action = AlbumFragmentDirections.actionAlbumFragmentToCommentFragment(albums[position].albumId)
 //            // Navigate using that action
@@ -51,6 +61,8 @@ class AlbumsAdapter: RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
     override fun getItemCount(): Int {
         return albums.size
     }
+
+
 
 
 }

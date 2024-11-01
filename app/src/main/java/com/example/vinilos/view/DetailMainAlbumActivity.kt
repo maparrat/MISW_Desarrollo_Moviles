@@ -27,18 +27,33 @@ class DetailMainAlbumActivity : AppCompatActivity() {
         setContentView(layout.activity_detail_album)
 
         val bundle = intent.extras
-        //Log.d(bundle.toString(), "bundle ver")
+        Log.d(bundle?.getString("albumGenre"), "bundle ver g")
 
         val b = bundle?.getInt("albumId")
-        var a = bundle?.getString("albumId")
-         a = "tonces "
+        var id = bundle?.getString("albumId")
+        var descripcion = bundle?.getString("albumDescription")
+        var name = bundle?.getString("albumName")
+        var record = bundle?.getString("albumRecord")
+        var genre = bundle?.getString("albumGenre")
+        var release = bundle?.getString("releaseDate")
+        var releaseCover = bundle?.getString("releaseCover")
+
+
 
         val textView = findViewById<TextView>(R.id.albumTitle)
-        textView.text = a
-        //Toast.makeText(this, a, Toast.LENGTH_SHORT).show()
-
-        //val  a  = intent.getStringExtra("albumId")
-        //Toast.makeText(this, a, Toast.LENGTH_SHORT).show()
+        textView.text = id
+        val textViewd = findViewById<TextView>(R.id.albumDescription)
+        textViewd.text = descripcion
+        val textViewName = findViewById<TextView>(R.id.albumName)
+        textViewName.text = name
+        val textViewRecord = findViewById<TextView>(R.id.albumRecord)
+        textViewRecord.text = record
+        val textViewGenre = findViewById<TextView>(R.id.albumGenre)
+        textViewGenre.text = genre
+        val textViewRelease = findViewById<TextView>(R.id.albumRelease)
+        textViewRelease.text = release
+        val textViewCover = findViewById<TextView>(R.id.albumCover)
+        textViewCover.text = releaseCover
 
 
     }

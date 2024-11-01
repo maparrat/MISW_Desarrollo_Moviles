@@ -63,13 +63,6 @@ class ListMainAlbumActivity : AppCompatActivity() {
             setupActionBarWithNavController(navController)
 
 
-        val buttonView = findViewById<Button>(id.button_detail)
-
-        buttonView.setOnClickListener {
-            val intent = Intent(this, DetailMainAlbumActivity::class.java)
-            startActivity(intent)
-        }
-
         }
 
     override fun onSupportNavigateUp(): Boolean {

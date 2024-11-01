@@ -55,28 +55,15 @@ class AlbumsAdapter: RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
 
             val intent = Intent(holder.context, DetailMainAlbumActivity::class.java)
             intent.putExtra("albumId", albums[position].id)
+            intent.putExtra("albumDescription", albums[position].description)
+            intent.putExtra("albumName", albums[position].name)
+            intent.putExtra("albumGenre", albums[position].genre)
+            intent.putExtra("albumRecord", albums[position].recordLabel)
+            intent.putExtra("releaseDate", albums[position].releaseDate)
+            intent.putExtra("releaseCover", albums[position].cover)
             ContextCompat.startActivity(holder.context, intent, null)
-
-
-
-
-          //  val intent = Intent(holder.context, DetailMainAlbumActivity::class.java)
-
-          //  intent.putExtra("albumId", albums[position].id)
-
-          //  ContextCompat.startActivity(holder.context, intent, null)
-
-            //intent.putExtra("albumId", albums[position].id)
-
-           // Toast.makeText(holder.context, "Has seleccionado: ${album.name} ", Toast.LENGTH_SHORT).show()
-
-          //  Toast.makeText(holder.context, "Has seleccionado: ${albums[position]} ", Toast.LENGTH_SHORT).show()
         }
-//        holder.viewDataBinding.root.setOnClickListener {
-//            val action = AlbumFragmentDirections.actionAlbumFragmentToCommentFragment(albums[position].albumId)
-//            // Navigate using that action
-//            holder.viewDataBinding.root.findNavController().navigate(action)
-//        }
+
     }
 
 

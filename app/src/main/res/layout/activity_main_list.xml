@@ -27,14 +27,7 @@
         app:navGraph="@navigation/nav_graph"
         tools:layout_editor_absoluteX="0dp" />
 
-    <Button
-        android:id="@+id/button_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="Click detail"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

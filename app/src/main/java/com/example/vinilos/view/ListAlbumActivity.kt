@@ -47,6 +47,7 @@ class AlbumFragment : Fragment() {
 
     @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+
         super.onActivityCreated(savedInstanceState)
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
@@ -61,6 +62,7 @@ class AlbumFragment : Fragment() {
         viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
+
     }
     override fun onDestroyView() {
         super.onDestroyView()

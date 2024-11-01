@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         val buttonView = findViewById<Button>(R.id.button1)
 
+
         buttonView.setOnClickListener {
             val intent = Intent(this, ListMainAlbumActivity::class.java)
             startActivity(intent)

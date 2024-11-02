@@ -6,6 +6,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
@@ -64,4 +65,45 @@ class TestListAlbum {
             .check(matches(hasDescendant(withText("Buscando América"))))
         Intents.release()
     }
+
+    @Test
+    fun viewDetailAlbum(){
+        Intents.init()
+        onView(withId(R.id.button1))
+            .perform(ViewActions.click())
+        intended(hasComponent(ListMainAlbumActivity::class.java.name))
+        Thread.sleep(5000)
+        onView(withId(R.id.albumsRv))
+            .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(0))
+            .check(matches(hasDescendant(withText("Buscando América"))))
+        Thread.sleep(5000)
+        onView(withText("Buscando América")).check(matches(isDisplayed()))
+        Thread.sleep(5000)
+        onView(withText("Buscando América")).perform(ViewActions.click())
+        Thread.sleep(5000)
+        Intents.release()
+    }
+
+    @Test
+    fun returningToMainMenu(){
+        Intents.init()
+        onView(withId(R.id.button1))
+            .perform(ViewActions.click())
+        intended(hasComponent(ListMainAlbumActivity::class.java.name))
+        Thread.sleep(5000)
+        onView(withId(R.id.albumsRv))
+            .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(0))
+            .check(matches(hasDescendant(withText("Buscando América"))))
+        Thread.sleep(5000)
+        onView(withText("Buscando América")).check(matches(isDisplayed()))
+        Thread.sleep(5000)
+        onView(withText("Buscando América")).perform(ViewActions.click())
+        Thread.sleep(2000)
+        pressBack()
+        Thread.sleep(2000)
+        pressBack()
+        Thread.sleep(2000)
+        Intents.release()
+    }
+
 }

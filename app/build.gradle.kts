@@ -51,10 +51,13 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.espresso.contrib)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    /* noinspection UseTomlInstead */
+        /* noinspection UseTomlInstead */
     implementation("com.android.volley:volley:1.2.1")
+    androidTestImplementation(libs.androidx.espresso.intents)
+
 }
 

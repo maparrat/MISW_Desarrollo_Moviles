@@ -2,6 +2,7 @@ package com.example.vinilos.network
 
 import android.content.ClipData.Item
 import android.content.Context
+import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -116,6 +117,7 @@ class NetworkServiceAdapter(context: Context) {
                         birthDate = item.getString("birthDate")
                     ))
                 }
+                Log.d("MyTag", list.size.toString())
                 onComplete(list)
             },
             {

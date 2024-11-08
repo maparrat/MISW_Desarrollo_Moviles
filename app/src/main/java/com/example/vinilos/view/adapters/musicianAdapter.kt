@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos.R
+import com.example.vinilos.databinding.ActivityListArtistaBinding
 import com.example.vinilos.model.MusicianModel
 //import com.example.vinilos.view.MusicianFragment
 import com.example.vinilos.databinding.ActivityMainListArtistaBinding
@@ -25,19 +26,19 @@ class MusiciansAdapter: RecyclerView.Adapter<MusiciansAdapter.MusicianViewHolder
             notifyDataSetChanged()
         }
 
-    class MusicianViewHolder(val viewDataBinding: ActivityMainListArtistaBinding) :
+    class MusicianViewHolder(val viewDataBinding: ActivityListArtistaBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root) {
         val context = viewDataBinding.root.context
 
         companion object {
             @LayoutRes
-            val LAYOUT = R.layout.activity_main_list_artista
+            val LAYOUT = R.layout.activity_list_artista
         }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MusicianViewHolder {
-        val withDataBinding: ActivityMainListArtistaBinding = DataBindingUtil.inflate(
+        val withDataBinding: ActivityListArtistaBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
             MusicianViewHolder.LAYOUT,
             parent,

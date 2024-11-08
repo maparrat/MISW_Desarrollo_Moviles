@@ -29,12 +29,12 @@ class ListMainArtistaActivity : AppCompatActivity() {
 
             // Get the navigation host fragment from this Activity
             val navHostFragment = supportFragmentManager
-                .findFragmentById(id.nav_host_fragment) as NavHostFragment
+                .findFragmentById(id.nav_host_fragment_artist) as NavHostFragment
             // Instantiate the navController using the NavHostFragment
             navController = navHostFragment.navController
             // Make sure actions in the ActionBar get propagated to the NavController
             Log.d("act", navController.toString())
-            setSupportActionBar(findViewById(id.my_toolbar))
+            setSupportActionBar(findViewById(id.my_toolbar_artist))
             setupActionBarWithNavController(navController)
 
 

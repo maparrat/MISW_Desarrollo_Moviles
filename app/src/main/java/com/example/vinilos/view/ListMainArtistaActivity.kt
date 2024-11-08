@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 package com.example.vinilos.view
 
 import android.content.Intent

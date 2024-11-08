@@ -1,6 +1,7 @@
 package com.example.vinilos.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.vinilos.model.AlbumModel
 import com.example.vinilos.model.AlbumDetailModel
@@ -41,6 +42,7 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
             _eventNetworkError.value = false
             _isNetworkErrorShown.value = false
         },{
+            Log.d("Error", it.toString())
             _eventNetworkError.value = true
         })
     }

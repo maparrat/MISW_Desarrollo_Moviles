@@ -11,9 +11,11 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.vinilos.model.AlbumModel
 import com.example.vinilos.model.AlbumDetailModel
+import com.example.vinilos.model.CollectorModel
 import com.example.vinilos.model.Tracks
 import com.example.vinilos.model.Performers
 import com.example.vinilos.model.Comments
+import com.example.vinilos.model.MusicianModel
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -42,7 +44,14 @@ class NetworkServiceAdapter(context: Context) {
                 val list = mutableListOf<AlbumModel>()
                 for (i in 0 until resp.length()) {
                     val item = resp.getJSONObject(i)
-                    list.add(i, AlbumModel(id = item.getInt("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = item.getString("releaseDate"), genre = item.getString("genre"), description = item.getString("description")))
+                    list.add(i, AlbumModel(id = item.getInt("id"),
+                        name = item.getString("name"),
+                        cover = item.getString("cover"),
+                        recordLabel = item.getString("recordLabel"),
+                        releaseDate = item.getString("releaseDate"),
+                        genre = item.getString("genre"),
+                        description = item.getString("description"))
+                    )
                 }
                 onComplete(list)
             },
@@ -71,6 +80,50 @@ class NetworkServiceAdapter(context: Context) {
                 onError(it)
             }))
     }
+
+    fun getCollector( onComplete:(resp:List<CollectorModel>)->Unit , onError: (error: VolleyError)->Unit){
+        requestQueue.add(getRequest("collectors",
+            { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<CollectorModel>()
+                for (i in 0 until resp.length()) {
+                    val item = resp.getJSONObject(i)
+                    list.add(i, CollectorModel(id = item.getInt("id"),
+                                                name = item.getString("name"),
+                                                telephone = item.getString("telephone"),
+                                                email = item.getString("email"))
+                    )
+                }
+                onComplete(list)
+            },
+            {
+                onError(it)
+            }))
+    }
+
+    fun getMusician( onComplete:(resp:List<MusicianModel>)->Unit , onError: (error: VolleyError)->Unit){
+        requestQueue.add(getRequest("musicians",
+            { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<MusicianModel>()
+                for (i in 0 until resp.length()) {
+                    val item = resp.getJSONObject(i)
+                    list.add(i, MusicianModel(
+                        id = item.getInt("id"),
+                        name = item.getString("name"),
+                        image = item.getString("image"),
+                        description = item.getString("description"),
+                        birthDate = item.getString("birthDate")
+                    ))
+                }
+                onComplete(list)
+            },
+            {
+                onError(it)
+            }))
+    }
+
+
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)

@@ -27,7 +27,7 @@ class ListMainColleccionistaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(layout.activity_main_list_coleccionista)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(id.main_coleccionista)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -35,12 +35,12 @@ class ListMainColleccionistaActivity : AppCompatActivity() {
 
             // Get the navigation host fragment from this Activity
             val navHostFragment = supportFragmentManager
-                .findFragmentById(id.nav_host_fragment) as NavHostFragment
+                .findFragmentById(id.nav_host_fragment_coleccionista) as NavHostFragment
             // Instantiate the navController using the NavHostFragment
             navController = navHostFragment.navController
             // Make sure actions in the ActionBar get propagated to the NavController
             Log.d("act", navController.toString())
-            setSupportActionBar(findViewById(id.my_toolbar))
+            setSupportActionBar(findViewById(id.my_toolbar_coleccionista))
             setupActionBarWithNavController(navController)
 
 

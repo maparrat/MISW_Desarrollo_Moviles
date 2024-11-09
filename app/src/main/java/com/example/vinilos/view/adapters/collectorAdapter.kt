@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos.R
+import com.example.vinilos.databinding.ActivityListColeccionistaBinding
 //import com.example.vinilos.view.CollectorFragment
 import com.example.vinilos.databinding.ActivityMainListColeccionistaBinding
 import com.example.vinilos.model.CollectorModel
@@ -25,19 +26,19 @@ class CollectorsAdapter: RecyclerView.Adapter<CollectorsAdapter.CollectorViewHol
             notifyDataSetChanged()
         }
 
-    class CollectorViewHolder(val viewDataBinding: ActivityMainListColeccionistaBinding) :
+    class CollectorViewHolder(val viewDataBinding: ActivityListColeccionistaBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root) {
         val context = viewDataBinding.root.context
 
         companion object {
             @LayoutRes
-            val LAYOUT = R.layout.activity_main_list_coleccionista
+            val LAYOUT = R.layout.activity_list_coleccionista
         }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectorViewHolder {
-        val withDataBinding: ActivityMainListColeccionistaBinding = DataBindingUtil.inflate(
+        val withDataBinding: ActivityListColeccionistaBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
             CollectorViewHolder.LAYOUT,
             parent,
@@ -47,7 +48,7 @@ class CollectorsAdapter: RecyclerView.Adapter<CollectorsAdapter.CollectorViewHol
 
     override fun onBindViewHolder(holder: CollectorViewHolder, position: Int) {
         holder.viewDataBinding.also {
-            it.collector = collectors[position]
+            it.coleccionista = collectors[position]
         }
 
     }

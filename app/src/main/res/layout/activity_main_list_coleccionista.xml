@@ -8,31 +8,31 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
+        android:id="@+id/main_coleccionista"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.MainActivity">
 
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/my_toolbar"
+            android:id="@+id/my_toolbar_coleccionista"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/toolbarBackground"
             android:elevation="4dp"
-            android:title="@string/album_list"
+            android:title="@string/collector_list"
             android:theme="@style/ToolbarStyle"
             app:layout_constraintTop_toTopOf="parent"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/nav_host_fragment"
+            android:id="@+id/nav_host_fragment_coleccionista"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="64dp"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/nav_graph"
+            app:navGraph="@navigation/nav_graph_coleccionista"
             tools:layout_editor_absoluteX="0dp" />
 
 

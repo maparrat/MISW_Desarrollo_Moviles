@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="album" type="com.example.vinilos.model.AlbumModel"/>
+        <variable name="musician" type="com.example.vinilos.model.MusicianModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,7 +30,7 @@
                     android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{album.name}"
+                    android:text="@{musician.name}"
                     android:height="50dp"
                     android:layout_margin="10dp"
                     android:gravity="center_vertical|start"

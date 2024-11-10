@@ -5,8 +5,10 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.example.vinilos.model.AlbumModel
 import com.example.vinilos.model.AlbumDetailModel
-import com.example.vinilos.network.NetworkServiceAdapter
 import com.example.vinilos.repositories.albumRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class AlbumViewModel(application: Application) :  AndroidViewModel(application) {
@@ -37,14 +39,21 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
     }
 
     private fun refreshDataFromNetwork() {
-        albumsRepository.refreshData({
-            _albums.postValue(it)
+        try {
+            viewModelScope.launch(Dispatchers.Default) {
+                withContext(Dispatchers.IO) {
+                    var data = albumsRepository.refreshData()
+                    _albums.postValue(data)
+                }
+            }
             _eventNetworkError.value = false
             _isNetworkErrorShown.value = false
-        },{
-            Log.d("Error", it.toString())
+        }
+        catch (e:Exception){
+            Log.d("Error", e.toString())
             _eventNetworkError.value = true
-        })
+        }
+
     }
 
     fun refreshDataDetailFromNetwork(albumId: Int) {

@@ -29,7 +29,6 @@ class DetailMainAlbumActivity : AppCompatActivity() {
         val bundle = intent.extras
         Log.d(bundle?.getString("albumGenre"), "bundle ver g")
 
-        val b = bundle?.getInt("albumId")
         var id = bundle?.getString("albumId")
         var descripcion = bundle?.getString("albumDescription")
         var name = bundle?.getString("albumName")

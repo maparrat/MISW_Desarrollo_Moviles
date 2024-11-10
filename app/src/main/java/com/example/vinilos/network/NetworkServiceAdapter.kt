@@ -19,6 +19,10 @@ import com.example.vinilos.model.Comments
 import com.example.vinilos.model.MusicianModel
 import org.json.JSONArray
 import org.json.JSONObject
+import java.util.stream.Collector
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 class NetworkServiceAdapter(context: Context) {
 
@@ -38,27 +42,29 @@ class NetworkServiceAdapter(context: Context) {
         Volley.newRequestQueue(context.applicationContext)
     }
 
-    fun getAlbums( onComplete:(resp:List<AlbumModel>)->Unit , onError: (error: VolleyError)->Unit){
-        requestQueue.add(getRequest("albums",
-            { response ->
-                val resp = JSONArray(response)
-                val list = mutableListOf<AlbumModel>()
-                for (i in 0 until resp.length()) {
+    suspend  fun getAlbums() = suspendCoroutine<List<AlbumModel>> {
+        cont -> requestQueue.add(getRequest("albums",
+        { response ->
+            val resp = JSONArray(response)
+            val list = mutableListOf<AlbumModel>()
+               for (i in 0 until resp.length()) {
                     val item = resp.getJSONObject(i)
-                    list.add(i, AlbumModel(id = item.getInt("id"),
+                    val album = AlbumModel(
+                        id = item.getInt("id"),
                         name = item.getString("name"),
                         cover = item.getString("cover"),
                         recordLabel = item.getString("recordLabel"),
                         releaseDate = item.getString("releaseDate"),
                         genre = item.getString("genre"),
-                        description = item.getString("description"))
+                        description = item.getString("description")
                     )
+                    list.add(i, album)
                 }
-                onComplete(list)
+            cont.resume(value = list)
             },
-            {
-                onError(it)
-            }))
+        {
+            cont.resumeWithException(it)
+        }))
     }
 
     fun getAlbumDetails( albumId: Int, onComplete:(resp:List<AlbumDetailModel>)->Unit , onError: (error: VolleyError)->Unit){

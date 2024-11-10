@@ -1,5 +1,6 @@
 package com.example.vinilos.view.adapters
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -20,9 +21,10 @@ import com.example.vinilos.view.DetailMainAlbumActivity
 class AlbumsAdapter: RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
 
     var albums: List<AlbumModel> = emptyList()
+        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
-            notifyDataSetChanged()
+            this.notifyDataSetChanged()
         }
 
     class AlbumViewHolder(val viewDataBinding: ActivityListAlbumBinding) :
@@ -51,7 +53,7 @@ class AlbumsAdapter: RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
         }
 
         holder.viewDataBinding.root.setOnClickListener {
-            val album = holder.viewDataBinding.album // Acceder a los datos asociados a la vista
+
 
             val intent = Intent(holder.context, DetailMainAlbumActivity::class.java)
             intent.putExtra("albumId", albums[position].id)

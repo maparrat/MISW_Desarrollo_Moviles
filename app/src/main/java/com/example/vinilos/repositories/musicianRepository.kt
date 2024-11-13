@@ -2,20 +2,34 @@ package com.example.vinilos.repositories
 
 
 import android.app.Application
+import android.content.Context
 import com.android.volley.VolleyError
 import com.example.vinilos.model.MusicianModel
 import com.example.vinilos.network.NetworkServiceAdapter
+import com.google.gson.Gson
 
 
-class musicianRepository (val application: Application) {
+class musicianRepository(val application: Application) {
 
-    fun refreshData(callback: (List<MusicianModel>)->Unit, onError: (VolleyError)->Unit) {
-        //Determinar la fuente de datos que se va a utilizar.
-        NetworkServiceAdapter.getInstance(application).getMusician({
-            //Guardar los artistas de la variable it en un almacén de datos local para uso futuro
-            callback(it)
-        },
-            onError
-        )
+    private val sharedPreferences = application.getSharedPreferences("musician_cache", Context.MODE_PRIVATE)
+
+    fun refreshData(callback: (List<MusicianModel>) -> Unit, onError: (VolleyError) -> Unit) {
+        // Primero intenta obtener datos de la caché
+        val cachedData = sharedPreferences.getString("musicians", null)
+
+        if (cachedData != null) {
+            // Si hay datos en caché, los parseamos y devolvemos
+            val musicians = Gson().fromJson(cachedData, Array<MusicianModel>::class.java).toList()
+            callback(musicians)
+        } else {
+            // Si no hay datos en caché, los obtenemos de la red
+            NetworkServiceAdapter.getInstance(application).getMusician({
+                // Guardar en caché para futuras solicitudes
+                sharedPreferences.edit().putString("musicians", Gson().toJson(it)).apply()
+                callback(it)
+            }, onError)
+        }
     }
 }
+
+

@@ -60,6 +60,7 @@ dependencies {
         /* noinspection UseTomlInstead */
     implementation("com.android.volley:volley:1.2.1")
     androidTestImplementation(libs.androidx.espresso.intents)
+    implementation ("com.google.code.gson:gson:2.10.1")
 
 
 }

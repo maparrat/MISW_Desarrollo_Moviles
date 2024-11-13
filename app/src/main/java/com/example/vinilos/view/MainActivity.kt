@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.vinilos.R
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -22,9 +23,23 @@ class MainActivity : AppCompatActivity() {
 
         val buttonView = findViewById<Button>(R.id.button1)
 
+        val buttonViewArtista = findViewById<Button>(R.id.button2)
+
+        val buttonViewColeccionista= findViewById<Button>(R.id.button3)
+
 
         buttonView.setOnClickListener {
             val intent = Intent(this, ListMainAlbumActivity::class.java)
+            startActivity(intent)
+        }
+
+        buttonViewArtista.setOnClickListener {
+            val intent = Intent(this, ListMainArtistaActivity::class.java)
+            startActivity(intent)
+        }
+
+        buttonViewColeccionista.setOnClickListener {
+            val intent = Intent(this, ListMainColleccionistaActivity::class.java)
             startActivity(intent)
         }
 

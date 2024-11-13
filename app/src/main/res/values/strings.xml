@@ -6,4 +6,7 @@
     <string name="albunes">Albunes</string>
     <string name="artistas">Artistas</string>
     <string name="album_list">Album list</string>
+    <string name="artista_list">Artista list</string>
+    <string name="collector_list">Coleccionista list</string>
+
 </resources>

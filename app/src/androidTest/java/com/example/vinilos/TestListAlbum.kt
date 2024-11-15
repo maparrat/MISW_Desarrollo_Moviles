@@ -1,5 +1,7 @@
 package com.example.vinilos
 
+import android.os.Parcel
+import android.os.Parcelable
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -24,10 +26,13 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class TestListAlbum {
+class TestListAlbum() : Parcelable {
 
     @get:Rule
     val activityRule = ActivityTestRule(MainActivity::class.java)
+
+    constructor(parcel: Parcel) : this() {
+    }
 
     @Test
     fun clickAlbunesButton_navigatesToListAlbumActivity() {
@@ -104,6 +109,24 @@ class TestListAlbum {
         pressBack()
         Thread.sleep(2000)
         Intents.release()
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<TestListAlbum> {
+        override fun createFromParcel(parcel: Parcel): TestListAlbum {
+            return TestListAlbum(parcel)
+        }
+
+        override fun newArray(size: Int): Array<TestListAlbum?> {
+            return arrayOfNulls(size)
+        }
     }
 
 }

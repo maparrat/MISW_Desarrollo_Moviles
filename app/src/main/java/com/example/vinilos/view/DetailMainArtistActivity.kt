@@ -34,7 +34,7 @@ class DetailMainArtistActivity : AppCompatActivity() {
         var name = bundle?.getString("musicianName")
 
         var genre = bundle?.getString("musicianGenre")
-        var record = bundle?.getString("musicianRecord")
+
         var release = bundle?.getString("musicianDate")
 
 
@@ -46,8 +46,7 @@ class DetailMainArtistActivity : AppCompatActivity() {
         textViewd.text = descripcion
         val textViewName = findViewById<TextView>(R.id.artistName)
         textViewName.text = name
-        val textViewRecord = findViewById<TextView>(R.id.artistRecord)
-        textViewRecord.text = record
+
         val textViewGenre = findViewById<TextView>(R.id.artistGenre)
         textViewGenre.text = genre
         val textViewRelease = findViewById<TextView>(R.id.artistDate)

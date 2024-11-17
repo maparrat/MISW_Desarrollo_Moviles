@@ -16,6 +16,8 @@ import com.example.vinilos.databinding.ActivityListArtistaBinding
 import com.example.vinilos.model.MusicianModel
 //import com.example.vinilos.view.MusicianFragment
 import com.example.vinilos.databinding.ActivityMainListArtistaBinding
+import com.example.vinilos.view.DetailMainArtistActivity
+
 //import com.example.vinilos.view.DetailMainMusicianActivity
 
 
@@ -51,6 +53,22 @@ class MusiciansAdapter: RecyclerView.Adapter<MusiciansAdapter.MusicianViewHolder
     override fun onBindViewHolder(holder: MusicianViewHolder, position: Int) {
         holder.viewDataBinding.also {
             it.musician = musicians[position]
+        }
+        holder.viewDataBinding.root.setOnClickListener {
+
+
+            val intent = Intent(holder.context, DetailMainArtistActivity::class.java)
+            intent.putExtra("musicianId", musicians[position].id)
+            intent.putExtra("musicianDescription", musicians[position].description)
+            intent.putExtra("musicianName", musicians[position].name)
+            intent.putExtra("musicianGenre", musicians[position].image)
+            intent.putExtra("musicianRecord", musicians[position].description)
+            intent.putExtra("musicianDate", musicians[position].birthDate)
+
+            ContextCompat.startActivity(holder.context, intent, null)
+
+            //val musician = holder.viewDataBinding.musician // Acceder a los datos asociados a la vista
+            //Toast.makeText(holder.context, "Has seleccionado: ${musicians[position]} ", Toast.LENGTH_SHORT).show()
         }
 
     }

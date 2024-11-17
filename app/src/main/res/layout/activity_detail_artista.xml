@@ -4,7 +4,7 @@
 
     <data>
         <variable
-            name="album"
+            name="musician"
             type="com.example.vinilos.model.MusicianModel"
             />
     </data>
@@ -17,59 +17,73 @@
         android:padding="20dp"
         android:orientation="vertical">
 
-
         <TextView
-            android:id="@+id/artistNameLabel"
+            android:id="@+id/artistTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Artista :"
-            android:layout_marginTop="20dp" />
+            android:text="@{musician.name}"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            />
         <TextView
 
             android:id="@+id/artistName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
             />
 
+        <ImageView
+            android:id="@+id/artistImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:adjustViewBounds="true"
+            android:src="@{musician.image}"
+            />
         <TextView
             android:id="@+id/artistDateLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nacido el dia :"
+            android:textStyle="bold"
+            android:textSize="14dp"
+            android:layout_marginTop="20dp"
+
              />
 
         <TextView
             android:id="@+id/artistDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
 
             />
-
-
-
-
-
-        <TextView
-            android:id="@+id/artistGenre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-
-
 
         <TextView
             android:id="@+id/artistRecordLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Historia del artista :"
-            android:layout_marginTop="20dp" />
+            android:textStyle="bold"
+            android:textSize="14dp"
+            android:layout_marginTop="20dp"
+
+            />
 
         <TextView
             android:id="@+id/artistDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+
+            android:textAlignment="gravity"
             />
 
 

@@ -61,7 +61,7 @@ class MusiciansAdapter: RecyclerView.Adapter<MusiciansAdapter.MusicianViewHolder
             intent.putExtra("musicianId", musicians[position].id)
             intent.putExtra("musicianDescription", musicians[position].description)
             intent.putExtra("musicianName", musicians[position].name)
-            intent.putExtra("musicianGenre", musicians[position].image)
+            intent.putExtra("musicianImage", musicians[position].image)
             intent.putExtra("musicianDate", musicians[position].birthDate)
 
             ContextCompat.startActivity(holder.context, intent, null)

@@ -21,7 +21,10 @@
 
             android:id="@+id/albumName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            />
 
         <TextView
             android:id="@+id/albumTitle"
@@ -36,52 +39,81 @@
             android:layout_height="wrap_content" />
 
         <TextView
+            android:id="@+id/albumCoverLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Caratula"
+            android:textSize="16dp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/albumImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:adjustViewBounds="true"
+            android:src="@{album.cover}"
+            />
+
+        <ImageView
+            android:id="@+id/albumCover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:adjustViewBounds="true"
+            android:src="@{album.cover}"/>
+
+        <TextView
             android:id="@+id/albumGenreLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Genero" />
+            android:text="Genero"
+            android:textSize="16dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/albumGenre"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/albumRecordLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Disquera" />
+            android:text="Disquera"
+            android:textSize="16dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/albumRecord"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/albumReleaseLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Año de lanzamiento" />
+            android:text="Año de lanzamiento"
+            android:textSize="16dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/albumRelease"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/albumCoverLabel"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Caratula" />
+            android:textAlignment="center"
+            />
 
-        <TextView
-            android:id="@+id/albumCover"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+
 
 
     </LinearLayout>

@@ -1,6 +1,91 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+        <variable
+            name="album"
+            type="com.example.vinilos.model.MusicianModel"
+            />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp" >
+
+        <TextView
+
+            android:id="@+id/artistName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/artistDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+
+        <TextView
+            android:id="@+id/artistDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/artistGenreLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Genero"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/artistGenre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/artistRecordLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Disquera"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/artistRecord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/artistReleaseLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Año de lanzamiento"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/artistRelease"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/artistCoverLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Caratula"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/artistCover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+
+    </LinearLayout>
+</layout>

@@ -3,6 +3,7 @@ package com.example.vinilos.view
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Switch
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -27,6 +28,12 @@ class MainActivity : AppCompatActivity() {
 
         val buttonViewColeccionista= findViewById<Button>(R.id.button3)
 
+        // Referenciar el Switch
+        val switchCollector = findViewById<Switch>(R.id.switch_collector)
+
+        // Inicializar SharedPreferences
+        val sharedPreferences = getSharedPreferences("vinilos_prefs", MODE_PRIVATE)
+
 
         buttonView.setOnClickListener {
             val intent = Intent(this, ListMainAlbumActivity::class.java)
@@ -43,6 +50,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // Configurar el estado inicial del Switch desde SharedPreferences
+        val isSwitchChecked = sharedPreferences.getBoolean("SWITCH_STATE", false)
+        switchCollector.isChecked = isSwitchChecked
+
+        // Guardar cambios en el estado del Switch
+        switchCollector.setOnCheckedChangeListener { _, isChecked ->
+            sharedPreferences.edit().putBoolean("SWITCH_STATE", isChecked).apply()
+        }
 
     }
 }

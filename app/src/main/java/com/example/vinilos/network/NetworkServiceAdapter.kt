@@ -17,6 +17,8 @@ import com.example.vinilos.model.Tracks
 import com.example.vinilos.model.Performers
 import com.example.vinilos.model.Comments
 import com.example.vinilos.model.MusicianModel
+import com.example.vinilos.model.CollectorDetailModel
+import com.example.vinilos.model.CollectorAlbum
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.stream.Collector
@@ -66,7 +68,7 @@ class NetworkServiceAdapter(context: Context) {
             cont.resumeWithException(it)
         }))
     }
-
+    //Funcion para obtener los detalles del album
     fun getAlbumDetails( albumId: Int, onComplete:(resp:List<AlbumDetailModel>)->Unit , onError: (error: VolleyError)->Unit){
         requestQueue.add(getRequest("albums/$albumId",
             { response ->
@@ -131,7 +133,30 @@ class NetworkServiceAdapter(context: Context) {
             }))
     }
 
-
+    //Funcion para obtener los detalles del coleccionista
+    fun getCollectorDetails( collectorId: Int, onComplete:(resp:List<CollectorDetailModel>)->Unit , onError: (error: VolleyError)->Unit){
+        requestQueue.add(getRequest("albums/$collectorId",
+            { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<CollectorDetailModel>()
+                for (i in 0 until resp.length()) {
+                    val item = resp.getJSONObject(i)
+                    list.add(i, CollectorDetailModel(
+                        id = item.getInt("id"),
+                        name = item.getString("name"),
+                        telephone = item.getString("telephone"),
+                        email = item.getString("email"),
+                        comments = parseComments(item.getJSONArray("comments")),
+                        favoritePerformers = parsePerformers(item.getJSONArray("favoritePerformers")),
+                        collectorAlbums = parseCollectorAlbum(item.getJSONArray("collectorAlbums"))
+                    ))
+                }
+                onComplete(list)
+            },
+            {
+                onError(it)
+            }))
+    }
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
@@ -143,6 +168,7 @@ class NetworkServiceAdapter(context: Context) {
         return  JsonObjectRequest(Request.Method.PUT, BASE_URL+path, body, responseListener, errorListener)
     }
 
+    //Métodos para iterar las listas de las respuestas.
     private fun parseTracks(jsonArray: JSONArray): Array<Tracks> {
         val tracks = mutableListOf<Tracks>()
         for (i in 0 until jsonArray.length()) {
@@ -188,6 +214,21 @@ class NetworkServiceAdapter(context: Context) {
             )
         }
         return comments.toTypedArray()
+    }
+
+    private fun parseCollectorAlbum(jsonArray: JSONArray): Array<CollectorAlbum> {
+        val collectorAlbum = mutableListOf<CollectorAlbum>()
+        for (i in 0 until jsonArray.length()) {
+            val collectorItem = jsonArray.getJSONObject(i)
+            collectorAlbum.add(
+                CollectorAlbum(
+                    id = collectorItem.getInt("id"),
+                    price = collectorItem.getInt("price"),
+                    status = collectorItem.getString("status")
+                )
+            )
+        }
+        return collectorAlbum.toTypedArray()
     }
 
 

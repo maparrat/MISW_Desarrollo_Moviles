@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.vinilos.model.CollectorModel
+import com.example.vinilos.model.CollectorDetailModel
 import com.example.vinilos.repositories.collectorRepository
 
 
@@ -15,6 +16,10 @@ class CollectorViewModel(application: Application) :  AndroidViewModel(applicati
 
     val collectors: MutableLiveData<List<CollectorModel>>
         get() = _collectors
+
+    private val _collectorDetail = MutableLiveData<List<CollectorDetailModel>>()
+    val collectorDetail: LiveData<List<CollectorDetailModel>>
+        get() = _collectorDetail
 
     private var _eventNetworkError = MutableLiveData<Boolean>(false)
 
@@ -37,6 +42,15 @@ class CollectorViewModel(application: Application) :  AndroidViewModel(applicati
             _isNetworkErrorShown.value = false
         },{
             Log.d("Error", it.toString())
+            _eventNetworkError.value = true
+        })
+    }
+    //Actualiza los detalles de un coleccionista obteniéndolos desde el repositorio y publica en los LiveData correspondientes.
+    fun refreshDataDetailFromNetwork(collectorId: Int) {
+        collectorsRepository.refreshDetailData(collectorId, { collectorDetail ->
+            _collectorDetail.postValue(collectorDetail)
+            _eventNetworkError.value = false
+        }, {
             _eventNetworkError.value = true
         })
     }

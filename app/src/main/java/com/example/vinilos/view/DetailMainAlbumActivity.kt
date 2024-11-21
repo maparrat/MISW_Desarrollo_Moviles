@@ -9,7 +9,11 @@ package com.example.vinilos.view
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -44,6 +48,20 @@ class DetailMainAlbumActivity : AppCompatActivity() {
         var releaseCover = bundle?.getString("releaseCover")
 
 
+        // Referencias a las vistas
+        val formContainer = findViewById<LinearLayout>(R.id.form_container)
+        val inputTrackName = findViewById<EditText>(R.id.input_track_name)
+        val inputTrackDuration = findViewById<EditText>(R.id.input_track_duration)
+        val buttonCreateTrack = findViewById<Button>(R.id.button_create_track)
+        // Consultar el estado del Switch desde las SharedPreferences
+        val sharedPreferences = getSharedPreferences("vinilos_prefs", MODE_PRIVATE)
+        val isSwitchChecked = sharedPreferences.getBoolean("SWITCH_STATE", false)
+        // Configurar la visibilidad del formulario basado en el estado del Switch
+        if (isSwitchChecked) {
+            formContainer.visibility = View.VISIBLE
+        } else {
+            formContainer.visibility = View.GONE
+        }
 
         val textView = findViewById<TextView>(R.id.albumTitle)
         textView.text = id
@@ -64,10 +82,30 @@ class DetailMainAlbumActivity : AppCompatActivity() {
         val textViewImage = findViewById<ImageView>(R.id.albumCover)
         textViewImage.setImageResource(R.drawable.ic_launcher_background)
 
+        buttonCreateTrack.setOnClickListener {
+            val trackName = inputTrackName.text.toString()
+            val trackDuration = inputTrackDuration.text.toString()
+
+            if (trackName.isNotEmpty() && trackDuration.isNotEmpty()) {
+                // Aquí puedes manejar la lógica para crear el track
+                createTrack(trackName, trackDuration)
+            } else {
+                // Muestra un mensaje de error si los campos están vacíos
+                showError("Please fill out all fields.")
+            }
+        }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+    private fun createTrack(name: String, duration: String) {
+        // Lógica para crear el track (enviar al servidor, guardar localmente, etc.)
+    }
+
+    private fun showError(message: String) {
+        // Lógica para mostrar un error (puede ser un Toast o un diálogo)
     }
 }
 

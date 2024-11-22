@@ -16,6 +16,9 @@ import com.example.vinilos.databinding.ActivityListColeccionistaBinding
 //import com.example.vinilos.view.CollectorFragment
 import com.example.vinilos.databinding.ActivityMainListColeccionistaBinding
 import com.example.vinilos.model.CollectorModel
+import com.example.vinilos.view.DetailMainArtistActivity
+import com.example.vinilos.view.DetailMainCollectorActivity
+
 //import com.example.vinilos.view.detailMainCollectorActivity
 
 
@@ -53,6 +56,19 @@ class CollectorsAdapter: RecyclerView.Adapter<CollectorsAdapter.CollectorViewHol
             it.coleccionista = collectors[position]
         }
 
+        holder.viewDataBinding.root.setOnClickListener {
+
+            val intent = Intent(holder.context, DetailMainCollectorActivity::class.java)
+            intent.putExtra("collectorId", collectors[position].id)
+            intent.putExtra("collectorName", collectors[position].name)
+            intent.putExtra("collectorTelephone", collectors[position].telephone)
+            intent.putExtra("collectorEmail", collectors[position].email)
+
+
+            ContextCompat.startActivity(holder.context, intent, null)
+        //val coleccionista = holder.viewDataBinding.coleccionista // Acceder a los datos asociados a la vista
+        //Toast.makeText(holder.context, "Has seleccionado: ${collectors[position]} ", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun getItemCount(): Int {

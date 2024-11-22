@@ -21,40 +21,28 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 
-class DetailMainArtistActivity : AppCompatActivity() {
+class DetailMainCollectorActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     @SuppressLint("MissingInflatedId", "WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(layout.activity_detail_artista)
+        setContentView(layout.activity_detail_coleccionista)
 
         val bundle = intent.extras
-        Log.d(bundle?.getString("musicianGenre"), "bundle ver g")
+        Log.d(bundle?.getString("collectorId"), "bundle ver g")
 
-        var id = bundle?.getString("musicianId")
-        var descripcion = bundle?.getString("musicianDescription")
-        var name = bundle?.getString("musicianName")
-        var image = bundle?.getString("musicianImage")
-        var release = bundle?.getString("musicianDate")
+        var name = bundle?.getString("collectorName")
+        var telephone = bundle?.getString("collectorTelephone")
+        var email = bundle?.getString("collectorEmail")
 
-        val textView = findViewById<TextView>(R.id.artistName)
-        textView.text = id
-        val textViewd = findViewById<TextView>(R.id.artistDescription)
-        textViewd.text = descripcion
-        val textViewName = findViewById<TextView>(R.id.artistName)
+
+        val textViewName = findViewById<TextView>(R.id.collectorName)
         textViewName.text = name
-        val textViewImage = findViewById<ImageView>(R.id.artistImage)
-        //textViewImage.setImageResource(R.drawable.ic_launcher_foreground)
-        textViewImage.setImageResource(R.drawable.ic_launcher_background)
-        //val artistImageView: ImageView = findViewById(R.id.artistImage)
-        //artistImageView.setImageResource(R.drawable.ic_launcher_background)
-        val textViewRelease = findViewById<TextView>(R.id.artistDate)
-        textViewRelease.text = release
-        val releaseDate = release?.let { SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(it) }
-        val dateFormat = SimpleDateFormat("yyyy MMM dd  ", Locale.getDefault())
-        release = dateFormat.format(releaseDate)
-        textViewRelease.text = release
+        val textViewTelephone = findViewById<TextView>(R.id.collectorTelephone)
+        textViewTelephone.text = telephone
+        val textViewEmail = findViewById<TextView>(R.id.collectorEmail)
+        textViewEmail.text = email
 
     }
 

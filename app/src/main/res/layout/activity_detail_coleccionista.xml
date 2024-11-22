@@ -5,7 +5,7 @@
     <data>
         <variable
             name="musician"
-            type="com.example.vinilos.model.MusicianModel"
+            type="com.example.vinilos.model.CollectorModel"
             />
     </data>
 
@@ -17,18 +17,10 @@
         android:padding="20dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/artistTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{musician.name}"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            />
+
         <TextView
 
-            android:id="@+id/artistName"
+            android:id="@+id/collectorName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -37,21 +29,11 @@
             android:textAlignment="center"
             />
 
-        <ImageView
-            android:id="@+id/artistImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
-            android:adjustViewBounds="true"
-            android:src="@{musician.image}"
-            />
         <TextView
-            android:id="@+id/artistDateLabel"
+            android:id="@+id/collectorTelefonoLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nacido el dia :"
+            android:text="Telefono:"
             android:textStyle="bold"
             android:textSize="14dp"
             android:layout_marginTop="20dp"
@@ -59,7 +41,7 @@
              />
 
         <TextView
-            android:id="@+id/artistDate"
+            android:id="@+id/collectorTelephone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -67,10 +49,10 @@
             />
 
         <TextView
-            android:id="@+id/artistRecordLabel"
+            android:id="@+id/collectorEmailLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Historia del artista :"
+            android:text="Email :"
             android:textStyle="bold"
             android:textSize="14dp"
             android:layout_marginTop="20dp"
@@ -78,7 +60,7 @@
             />
 
         <TextView
-            android:id="@+id/artistDescription"
+            android:id="@+id/collectorEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

@@ -73,6 +73,7 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
         }
     }
 
+    //Actualiza los detalles de un álbum obteniéndolos desde el repositorio y publica en los LiveData correspondientes.
     fun refreshDataDetailFromNetwork(albumId: Int) {
         albumsRepository.refreshDetailData(albumId, { albumDetail ->
             _albumDetail.postValue(albumDetail)

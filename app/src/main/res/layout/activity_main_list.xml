@@ -14,11 +14,10 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/toolbarBackground"
         android:elevation="4dp"
-        android:title="@string/album_list"
         android:theme="@style/ToolbarStyle"
+        android:title="@string/album_list"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
@@ -30,7 +29,20 @@
         app:navGraph="@navigation/nav_graph"
         tools:layout_editor_absoluteX="0dp" />
 
-
+    <Button
+        android:id="@+id/button_create_album"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="139dp"
+        android:layout_marginTop="667dp"
+        android:layout_marginEnd="139dp"
+        android:layout_marginBottom="16dp"
+        android:text="Create album"
+        android:textColor="@color/blanco"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

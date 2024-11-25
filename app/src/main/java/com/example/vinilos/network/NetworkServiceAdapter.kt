@@ -25,6 +25,7 @@ import java.util.stream.Collector
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
+import com.example.vinilos.model.TrackModel
 
 class NetworkServiceAdapter(context: Context) {
 
@@ -133,6 +134,45 @@ class NetworkServiceAdapter(context: Context) {
             }))
     }
 
+
+    suspend fun getTracks(albumId:Int) = suspendCoroutine<List<TrackModel>>{ cont->
+        requestQueue.add(getRequest("albums/$albumId/tracks",
+            { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<TrackModel>()
+                for (i in 0 until resp.length()) {
+                    val item = resp.getJSONObject(i)
+                    list.add(i, TrackModel(albumId = albumId, name = item.getString("name"), duration = item.getString("duration")))
+                }
+                cont.resume(list)
+            },
+            {
+                cont.resumeWithException(it)
+            }))
+    }
+
+    fun postTrack(albumId:Int, body: JSONObject, onComplete:(resp:JSONObject)->Unit , onError: (error:VolleyError)->Unit){
+        requestQueue.add(postRequest("albums/$albumId/tracks",
+            body,
+            { response ->
+                onComplete(response)
+            },
+            {
+                onError(it)
+            }))
+    }
+
+    fun postAlbum(body: JSONObject, onComplete:(resp:JSONObject)->Unit , onError: (error:VolleyError)->Unit){
+        requestQueue.add(postRequest("albums",
+            body,
+            { response ->
+                onComplete(response)
+                 },
+            {
+                onError(it)
+            }))
+    }
+
     //Funcion para obtener los detalles del coleccionista
     fun getCollectorDetails( collectorId: Int, onComplete:(resp:List<CollectorDetailModel>)->Unit , onError: (error: VolleyError)->Unit){
         requestQueue.add(getRequest("albums/$collectorId",
@@ -152,11 +192,13 @@ class NetworkServiceAdapter(context: Context) {
                     ))
                 }
                 onComplete(list)
-            },
+                },
             {
                 onError(it)
             }))
     }
+
+           
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)

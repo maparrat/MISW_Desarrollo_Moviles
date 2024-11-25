@@ -16,6 +16,10 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
     private val albumsRepository = albumRepository(application)
 
     private val _albums = MutableLiveData<List<AlbumModel>>()
+    private val _albumCreated = MutableLiveData<Boolean>()
+
+    val albumCreated: LiveData<Boolean>
+        get() = _albumCreated
 
     val albums: LiveData<List<AlbumModel>>
         get() = _albums
@@ -55,6 +59,20 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
         }
 
     }
+
+    fun createAlbum(album: AlbumModel) {
+        viewModelScope.launch(Dispatchers.Default) {
+            withContext(Dispatchers.IO) {
+                albumsRepository.createAlbum(album, { success ->
+                    _albumCreated.value = success
+                }, { error ->
+                    _albumCreated.value = false
+                })
+            }
+            _albumCreated.postValue(true)
+        }
+    }
+
     //Actualiza los detalles de un álbum obteniéndolos desde el repositorio y publica en los LiveData correspondientes.
     fun refreshDataDetailFromNetwork(albumId: Int) {
         albumsRepository.refreshDetailData(albumId, { albumDetail ->

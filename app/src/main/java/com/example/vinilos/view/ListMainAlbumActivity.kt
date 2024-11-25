@@ -52,6 +52,21 @@ class ListMainAlbumActivity : AppCompatActivity() {
             insets
         }
 
+        // Referenciar el botón
+        val buttonCreateAlbum = findViewById<Button>(R.id.button_create_album)
+
+        // Leer el estado del Switch desde SharedPreferences
+        val sharedPreferences = getSharedPreferences("vinilos_prefs", MODE_PRIVATE)
+        val isSwitchChecked = sharedPreferences.getBoolean("SWITCH_STATE", false)
+
+        // Configurar la visibilidad del botón
+        buttonCreateAlbum.visibility = if (isSwitchChecked) Button.VISIBLE else Button.GONE
+
+        buttonCreateAlbum.setOnClickListener {
+            val intent = Intent(this, CreateAlbumActivity::class.java)
+            startActivity(intent)
+        }
+
             // Get the navigation host fragment from this Activity
             val navHostFragment = supportFragmentManager
                 .findFragmentById(id.nav_host_fragment) as NavHostFragment

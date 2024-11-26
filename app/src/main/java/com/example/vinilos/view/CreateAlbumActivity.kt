@@ -86,7 +86,7 @@ class CreateAlbumActivity : AppCompatActivity() {
 
                 // Crear el objeto AlbumModel con la fecha formateada
                 val album = AlbumModel(
-                    id = 0, // id es null porque aún no ha sido asignado
+                    id = "0", // id es null porque aún no ha sido asignado
                     name = inputName.text.toString(),
                     cover = inputCover.text.toString(),
                     releaseDate = formattedDate,

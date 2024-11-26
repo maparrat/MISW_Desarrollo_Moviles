@@ -114,6 +114,29 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             />
+        <Button
+            android:id="@+id/button_get_track"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Get Track" />
+        <TextView
+            android:id="@+id/tracksLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Tracks"
+            android:textSize="16dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tracks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            />
+
+
 
         <LinearLayout
             android:id="@+id/form_container"

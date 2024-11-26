@@ -3,6 +3,7 @@ package com.example.vinilos.viewmodels
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.vinilos.model.AlbumModel
 import com.example.vinilos.model.MusicianModel
 import com.example.vinilos.model.TrackModel
 import com.example.vinilos.repositories.musicianRepository
@@ -17,7 +18,7 @@ class TrackViewModel(application: Application, albumId: Int) :  AndroidViewModel
     private val tracksRepository = trackRepository(application)
 
     private val _tracks = MutableLiveData<List<TrackModel>>()
-
+    private val _trackCreated = MutableLiveData<Boolean>()
     val tracks: LiveData<List<TrackModel>>
         get() = _tracks
 
@@ -53,9 +54,38 @@ class TrackViewModel(application: Application, albumId: Int) :  AndroidViewModel
         }
     }
 
+    fun getDataFromNetwork() {
+        try {
+            viewModelScope.launch(Dispatchers.IO) {
+                val data = tracksRepository.refreshData(id) // Asume que devuelve una lista de TrackModel
+                _tracks.postValue(data) // Publica los datos en LiveData
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
+            }
+        } catch (e: Exception) {
+            _eventNetworkError.postValue(true)
+        }
+    }
+
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
     }
+    fun createTrack(track: TrackModel) {
+        viewModelScope.launch(Dispatchers.Default) {
+            withContext(Dispatchers.IO) {
+                tracksRepository.createTrack(track, { success ->
+                    Log.d("track enviado", "creado")
+                    _trackCreated.value = success
+                }, { error ->
+
+                    _trackCreated.value = false
+                })
+            }
+            _trackCreated.postValue(true)
+        }
+    }
+
+
 
     class Factory(val app: Application, val albumId: Int) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

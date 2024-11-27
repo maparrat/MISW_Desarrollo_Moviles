@@ -64,8 +64,10 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
         viewModelScope.launch(Dispatchers.Default) {
             withContext(Dispatchers.IO) {
                 albumsRepository.createAlbum(album, { success ->
+                    Log.d("Album enviado", "creado")
                     _albumCreated.value = success
                 }, { error ->
+
                     _albumCreated.value = false
                 })
             }

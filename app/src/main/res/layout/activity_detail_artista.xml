@@ -10,53 +10,58 @@
     </data>
 
     <LinearLayout
-        android:layout_width="327dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="40dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:orientation="vertical"
         android:padding="20dp"
-        android:orientation="vertical">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/artistTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{musician.name}"
-            android:textSize="20dp"
-            android:textStyle="bold"
             android:textAlignment="center"
-            />
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
         <TextView
 
             android:id="@+id/artistName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="20dp"
-            android:textStyle="bold"
             android:textAlignment="center"
-            />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/artistImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:adjustViewBounds="true"
-            android:src="@{musician.image}"
-            />
+            android:src="@{musician.image}" />
+
         <TextView
             android:id="@+id/artistDateLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nacido el dia :"
-            android:textStyle="bold"
-            android:textSize="14dp"
             android:layout_marginTop="20dp"
+            android:text="Nacido el dia :"
+            android:autoSizeTextType="uniform"
+            android:textStyle="bold"
 
-             />
+            />
 
         <TextView
             android:id="@+id/artistDate"
@@ -70,10 +75,10 @@
             android:id="@+id/artistRecordLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Historia del artista :"
-            android:textStyle="bold"
-            android:textSize="14dp"
             android:layout_marginTop="20dp"
+            android:text="Historia del artista :"
+            android:autoSizeTextType="uniform"
+            android:textStyle="bold"
 
             />
 
@@ -83,12 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
 
-            android:textAlignment="gravity"
-            />
-
-
-
-
+            android:textAlignment="gravity" />
 
 
     </LinearLayout>

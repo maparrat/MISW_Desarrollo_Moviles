@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <LinearLayout
-        android:layout_width="327dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginHorizontal="30dp"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Caratula"
-            android:textSize="16dp"
+            android:autoSizeTextType="uniform"
             android:textStyle="bold"/>
 
         <ImageView
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Genero"
-            android:textSize="16dp"
+            android:autoSizeTextType="uniform"
             android:textStyle="bold"/>
 
         <TextView
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Disquera"
-            android:textSize="16dp"
+            android:autoSizeTextType="uniform"
             android:textStyle="bold"/>
 
         <TextView
@@ -105,7 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Año de lanzamiento"
-            android:textSize="16dp"
+            android:autoSizeTextType="uniform"
             android:textStyle="bold"/>
 
         <TextView
@@ -126,7 +126,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Tracks"
-            android:textSize="16dp"
+            android:autoSizeTextType="uniform"
             android:textStyle="bold"/>
 
         <TextView

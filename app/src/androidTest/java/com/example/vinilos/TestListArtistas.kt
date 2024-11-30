@@ -28,7 +28,7 @@ import org.junit.runner.RunWith
 class TestListArtistas {
 
     @get:Rule
-    val activityRule = ActivityTestRule(MainActivity::class.java)
+        val activityRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
     fun clickArtistasButton_navigatesToListArtistasActivity() {

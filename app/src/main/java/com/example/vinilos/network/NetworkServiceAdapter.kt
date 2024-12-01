@@ -53,7 +53,7 @@ class NetworkServiceAdapter(context: Context) {
                for (i in 0 until resp.length()) {
                     val item = resp.getJSONObject(i)
                     val album = AlbumModel(
-                        id = item.getInt("id"),
+                        id = item.getString("id"),
                         name = item.getString("name"),
                         cover = item.getString("cover"),
                         recordLabel = item.getString("recordLabel"),
@@ -162,17 +162,30 @@ class NetworkServiceAdapter(context: Context) {
             }))
     }
 
-    fun postAlbum(body: JSONObject, onComplete:(resp:JSONObject)->Unit , onError: (error:VolleyError)->Unit){
-        requestQueue.add(postRequest("albums",
+
+
+
+    fun postAlbum(
+        body: JSONObject,
+        onComplete: (resp: JSONObject) -> Unit,
+        onError: (error: VolleyError) -> Unit
+    ) {
+        Log.d("postAlbum", "Iniciando el método postAlbum")
+        Log.d("postAlbum", "Cuerpo de la solicitud: $body")
+
+        requestQueue.add(postRequest(
+            "albums",
             body,
             { response ->
+                Log.d("postAlbum", "Respuesta recibida: $response")
                 onComplete(response)
-                 },
-            {
-                onError(it)
-            }))
+            },
+            { error ->
+                Log.e("postAlbum", "Error ocurrido: ${error.message}", error)
+                onError(error)
+            }
+        ))
     }
-
     //Funcion para obtener los detalles del coleccionista
     fun getCollectorDetails( collectorId: Int, onComplete:(resp:List<CollectorDetailModel>)->Unit , onError: (error: VolleyError)->Unit){
         requestQueue.add(getRequest("albums/$collectorId",
